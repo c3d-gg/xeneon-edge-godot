@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+# Builds the TouchInterceptor GDExtension into ../bin/.
+#   python -m SCons            (debug, used by the editor and debug runs)
+#   python -m SCons target=template_release
+
+env = SConscript("godot-cpp/SConstruct", {"api_version": "4.7", "build_profile": "build_profile.json"})
+
+env.Append(CPPPATH=["src/"])
+env.Append(LIBS=["user32", "comctl32"])
+
+library = env.SharedLibrary(
+    "../bin/touch_interceptor{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+    source=Glob("src/*.cpp"),
+)
+
+env.NoCache(library)
+Default(library)

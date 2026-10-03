@@ -1,0 +1,9 @@
+{
+	"enabled_classes": [
+		"DisplayServer",
+		"Input",
+		"InputEventScreenDrag",
+		"InputEventScreenTouch",
+		"Node"
+	]
+}

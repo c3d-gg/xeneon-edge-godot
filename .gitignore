@@ -1,0 +1,13 @@
+# Godot
+.godot/
+
+# Native build output (the DLLs in bin/ are committed on purpose)
+native/.sconsign.dblite
+native/src/*.obj
+bin/*.exp
+bin/*.lib
+*.pdb
+*.ilk
+
+# Local logs
+*.log
