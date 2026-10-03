@@ -30,6 +30,10 @@ git clone --recurse-submodules https://github.com/c3d-gg/xeneon-edge-godot
 godot --path xeneon-edge-godot
 ```
 
+The very first time Godot opens the project, it may crash while closing. This is a
+Godot/godot-cpp bug: any extension class triggers it, not just this one. It only happens once.
+See the guide's gotchas.
+
 The app finds the Edge by its shape and fills that screen. Start a game on your main monitor,
 then tap the pads. The left side shows counters (cursor jumps, focus steals, mouse clicks
 Windows made from taps) and an event log. The buttons on the right turn native touch, the

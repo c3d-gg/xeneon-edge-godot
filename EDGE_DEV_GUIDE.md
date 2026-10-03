@@ -134,6 +134,13 @@ it was only tested with a few taps. Using both is the setup that was tested most
   It never ran against a real jump. It also isn't sure whether `warp_mouse` takes window or
   screen coordinates, so `main.gd` tries one and falls back to the other. With either
   protection on, the cursor doesn't jump anyway.
+- **On a fresh clone, the first import crashes on exit** (segfault, exit code 139). This
+  happens when there's no `.godot/` folder yet, e.g. with `godot --headless --import`. The
+  import itself finishes, and every run after that is clean. It isn't our code: a probe
+  extension that registers an empty `Node` subclass crashes the same way, one that registers
+  no classes doesn't, and setting `reloadable = true` doesn't help. It looks like a Godot
+  4.7.2 / godot-cpp 10.0.0 bug with extension classes that get loaded during the first
+  filesystem scan. In CI, run the import twice or ignore its exit code.
 - Windows moves the cursor ~100 ms after the finger lifts, when it makes the mouse click, so
   any cursor check has to wait (`CURSOR_CHECK_DELAY_SEC = 0.2`).
 
